@@ -1,5 +1,15 @@
+import {  useTable } from './useTable';
 function App() {
-  return (
+  const { rows, loading, errorMessage } = useTable("resources")
+    if (loading) {
+      return <p>Loading Unity Nexus Resources.....</p>
+    }
+
+    if (errorMessage) {
+      return <p>{errorMessage}</p>
+    }  
+    
+    return (
     <main>
       <section>
       <h1> Unity Nexus Allocation Registry</h1>
@@ -14,19 +24,14 @@ function App() {
       </table>
 
       <tbody>
-        <tr>
-          <td>Medical Supplies</td>
-          <td>Medical</td>
-          <td>25</td>
-          <td>Available</td>
-        </tr>
-
-        <tr>
-          <td>Stun Grenades</td>
-          <td>Equipment</td>
-          <td>10</td>
-          <td>Available</td>
-        </tr>
+        {rows.map((resource) => (
+         <tr key={resource.id}>
+          <td>{resource.name}</td>
+          <td>{resource.type}</td>
+          <td>{resource.quantity}</td>
+          <td>{resource.status}</td>
+         </tr>  
+        ))}
       </tbody>
     </section>
     </main>
