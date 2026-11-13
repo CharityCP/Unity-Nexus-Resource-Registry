@@ -1,3 +1,4 @@
+import './App.css';
 import {  useTable } from './useTable';
 function App() {
   const { rows, loading, errorMessage } = useTable("resources")
@@ -21,18 +22,18 @@ function App() {
           <th>Quantity</th>
           <th>Status</th>
         </tr>
-      </table>
-
+      
       <tbody>
         {rows.map((resource) => (
          <tr key={resource.id}>
           <td>{resource.name}</td>
           <td>{resource.type}</td>
-          <td>{resource.quantity}</td>
-          <td>{resource.status}</td>
+          <td className="quantity">{resource.quantity}</td>
+          <td className="status">{resource.status}</td>
          </tr>  
         ))}
       </tbody>
+      </table>
     </section>
     </main>
   )
