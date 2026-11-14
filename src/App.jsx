@@ -29,7 +29,12 @@ function App() {
           <td>{resource.name}</td>
           <td>{resource.type}</td>
           <td className="quantity">{resource.quantity}</td>
-          <td className="status">{resource.status}</td>
+          <td className="status">
+            <span className="status-indicator">
+              <span className="status-dot"></span>
+            {resource.status}
+            </span>
+            </td>
          </tr>  
         ))}
       </tbody>
