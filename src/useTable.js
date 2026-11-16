@@ -6,6 +6,8 @@ export function useTable (tableName) {
  const [loading, setLoading] = useState([true]);
  const [errorMessage, setErrorMessage] = useState('');
  async function fetchRows() {
+    setLoading("true");
+    setErrorMessage("");
     const { data, error } = await supabase
     .from(tableName)
     .select('*');
