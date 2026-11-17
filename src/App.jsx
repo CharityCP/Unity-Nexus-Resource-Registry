@@ -25,8 +25,13 @@ function App() {
 }
     
     return (
-    <main>
-      <section>
+    <main className="terminal-layout">
+      <aside className="terminal-sidebar">
+        <h2>UNITY NEXUS</h2>
+        <p>Registry Navigation</p>
+      </aside>
+      
+      <section className="registry-panel">
       <h1> Unity Nexus Allocation Registry</h1>
         <p>Monitor and manage Unity Nexus mission resources</p>
         <p className="resource-count">
@@ -35,7 +40,7 @@ function App() {
     <div className="registry-toolbar">
       <div className="registry-nav">
       <div className= "filter-controls">
-        <button className="status-click" onClick={() => setActiveRegistry("weapoons")}>
+        <button className="status-click" onClick={() => setActiveRegistry("weapons")}>
           Weapons
         </button>
         <button className="status-click" onClick={() => setActiveRegistry("resources")}>
@@ -88,8 +93,10 @@ function App() {
           <td>{activeRegistry === "missions" ? resource.title : resource.name}</td>
           <td>{activeRegistry === "missions"
                 ? resource.objective
+                :activeRegistry === "weapons"
+                ? resource["weapon type"] ?? resource.type
                 : resource.type}
-                </td>
+          </td>
           <td className="quantity">
             {activeRegistry === "missions"
             ? resource.clearance_level
