@@ -1,11 +1,17 @@
 import './App.css';
 import {  useTable } from './useTable';
 import { useState } from "react";
+import ResourceForm from "./ResourceForm";
+import OperatorLogin from "./OperatorLogin";
+
 function App() {
   const [activeRegistry, setActiveRegistry] = useState("resources");
-  const { rows, loading, errorMessage } = useTable(activeRegistry);
-  const { rows: weapons } = useTable("weapons");
   const [statusFilter, setStatusFilter] = useState("All");
+  const [editingResource, setEditingResource] = useState(null);
+
+  const { rows, setRows, loading, errorMessage, fetchRows } = useTable(activeRegistry);
+  const { rows: weapons } = useTable("weapons");
+  console.log("Independent weapons count:" ,weapons.length);
   const filteredRows = rows.filter((resource) => 
   statusFilter === "All" ||
   resource.status === statusFilter);
@@ -29,13 +35,17 @@ function App() {
       <aside className="terminal-sidebar">
         <h2>UNITY NEXUS</h2>
         <p>Registry Navigation</p>
+        <OperatorLogin />
       </aside>
-      
+
+
       <section className="registry-panel">
       <h1> Unity Nexus Allocation Registry</h1>
         <p>Monitor and manage Unity Nexus mission resources</p>
         <p className="resource-count">
           Total Resource Records: {rows.length}</p>
+
+    
 
     <div className="registry-toolbar">
       <div className="registry-nav">
@@ -78,6 +88,7 @@ function App() {
           ? "Clearance Level" : "Quantity"}
           </th>
           <th>Status</th>
+          {activeRegistry === "resources" && <th>Actions</th>}
         </tr>
         </tbody>
       
@@ -111,11 +122,24 @@ function App() {
             {resource.status}
             </span>
             </td>
+          {activeRegistry === "resources" && (
+            <td>
+            <button
+            type="button"
+            onClick={() => setEditingResource(resource)}>
+              Edit</button>
+              </td>
+            )}
         </tr>  
           );
         })}
       </tbody>
       </table>
+      <ResourceForm 
+      onResourceAdded={fetchRows}
+      editingResource={editingResource}
+      onEditComplete={() => setEditingResource(null)}
+      />
     </section>
     </main>
   )
