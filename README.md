@@ -280,9 +280,9 @@ Final checks will include:
 
 ## Project Links
 
-- **Live Application:** [Add Netlify URL]
+- **Live Application:** [(https://unity-nexus-registry.netlify.app/)]
 - **GitHub Repository:** [(https://github.com/CharityCP/Unity-Nexus-Resource-Registry)]
-- **Final Pull Request:** [Add merged PR URL]
+- **Final Pull Request:** [(https://github.com/CharityCP/Unity-Nexus-Resource-Registry/pull/13)]
 ## Final Reflection
 
 This project allowed me to combine my background in visual arts and instructional design with my growing software development skills.
